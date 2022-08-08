@@ -8,7 +8,7 @@
    * Konva JavaScript Framework v8.3.11
    * http://konvajs.org/
    * Licensed under the MIT
-   * Date: Fri Aug 05 2022
+   * Date: Mon Aug 08 2022
    *
    * Original work Copyright (C) 2011 - 2013 by Eric Rowell (KineticJS)
    * Modified work Copyright (C) 2014 - present by Anton Lavrenov (Konva)
@@ -1171,6 +1171,9 @@
   function getNumberArrayValidator() {
       if (Konva$2.isUnminified) {
           return function (val, attr) {
+              if (val instanceof Uint8Array || val instanceof Uint16Array || val instanceof Uint32Array || val instanceof Uint8ClampedArray) {
+                  return val;
+              }
               if (!Util._isArray(val)) {
                   Util.warn(_formatValue(val) +
                       ' is a not valid value for "' +
